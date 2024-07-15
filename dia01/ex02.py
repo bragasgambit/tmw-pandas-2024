@@ -2,29 +2,17 @@
 # Sumário de cada coluna
 # Média da coluna idade
 # Último nome da coluna nome
-
-# dados = {"nome":["Téo", "Nah", "Napoleão"], "idade": [31, 32, 14]}
-
-
-# %%
 import pandas as pd
 
-dados = {"nome":["Téo", "Nah", "Napoleão"], "idade": [31, 32, 14]}
-df = pd.DataFrame(dados)
-df
+data = {"nome":["Téo", "Nah", "Napoleão"], "idade": [31, 32, 14]}
 
-# %%
-sumario_numericas = df.describe()
-sumario_numericas
+df = pd.DataFrame(data)
+print(df)
 
-# %%
-df["nome"].describe()
+print("Sumério dos nomes:\n", df["nome"]) # Transforma o df em uma serie
+print("Sumário das idades:\n", df["idade"]) # Transforma o df em uma serie
 
-# %%
-df["idade"].mean()
+print("Média das idades:", df["idade"].mean())
 
-# %%
-df["nome"].iloc[-1]
-
-# %%
-df["nome"].tail(1)
+print("Último nome da coluna nome:", df["nome"].iloc[-1])
+# Poderia também ser df["nome"].tail(1)
