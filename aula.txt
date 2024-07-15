@@ -1,0 +1,4 @@
+SQL     - huge amount of data in servers
+pandas  - local data analysis
+
+filtering data with logical operations (bool)
