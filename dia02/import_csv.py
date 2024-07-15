@@ -95,3 +95,25 @@ b.append(10)
 
 print(a)
 print(b) # b agora é uma cópia que pode ser modificada independente de a
+
+## Selecionar n colunas:
+print(df_customers["UUID"])             # Series
+print(df_customers[["UUID", "Name"]])   # DataFrame
+
+colunas = df_customers.columns.tolist() # columns é um atributo do df e tolist() transforma o nome das colunas em lista
+colunas.sort() # ordena alfabeticamente os títulos da lista
+
+df_customers = df_customers[colunas] # Reatribui no próprio df o que se deseja
+print(df_customers)
+
+# Renomear colunas passando um dicionário
+# OBS.: .rename() gera um df novo! Portanto, reatribua a ele mesmo!!!
+df_customers = df_customers.rename(columns= {"Name": "Nome",
+                              "Points": "Pontos"})
+print(df_customers)
+
+# Pode ou reatribuir ou passar inplace=True
+df_customers.rename(columns={"UUID":"ID"}, inplace=True)
+print(df_customers)
+
+# 1:43:00
