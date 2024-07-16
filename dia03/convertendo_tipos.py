@@ -6,23 +6,30 @@ df
 # %%
 
 df.dtypes
-
-
-# %%
-
-df["Points_dobble"] = df["Points"] * 2
+# Retorna uma série
+# Caso eu queira converter Points (int64) para string, basta:
+# df["Points"].astype(str)
 
 # %%
-df[["Points", "Points_dobble"]].astype(float)
+# Adicionei uma coluna na lista
+df["Points_double"] = df["Points"] * 2
 
 # %%
-df[["UUID", "Name"]].astype(int)
+# Mudei o tipo das colunas Points e Points_double para float
+df[["Points", "Points_double"]].astype(float)
 
 # %%
+# Não dá para converter uma str para um int:
+# df[["UUID", "Name"]].astype(int)
+# Não vai dar certo o output
 
+# %%
+# Adicionei uma coluna onde cada linha tem a lista [1, 2]
 df["Lista"] = [[1, 2] for i in df.index]
 df
 
 # %%
 
 df.dtypes
+
+# %%
