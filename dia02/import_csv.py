@@ -3,16 +3,17 @@
 
 import pandas as pd
 
-df_customers = pd.read_csv("../data/customers.csv", sep=";") # Mudar o sepador, pois o padrão é ","
+df_customers = pd.read_csv(
+    "../data/customers.csv", sep=";"
+)  # Mudar o sepador, pois o padrão é ","
 
-df_customers.shape # quantidade de linhas e colunas
-
-
-
-df_customers.info(memory_usage="deep") # quantidade de memória
+df_customers.shape  # quantidade de linhas e colunas
 
 
-df_customers["Points"].describe() # Estatística descritiva da quantidade de pontos
+df_customers.info(memory_usage="deep")  # quantidade de memória
+
+
+df_customers["Points"].describe()  # Estatística descritiva da quantidade de pontos
 # Veja que a mediana (50%) é 58 pts e a média é 206. Isso indica que a distribuição de pontos é bastante assimétrica (poucos tem muito e muitos tem pouco)
 # Média é muito influenciada pelos outliers
 
@@ -35,20 +36,26 @@ for i in notas:
 print(notas_novas)
 
 # Em séries pode fazer operações escalares e vetoriais
-print(df_customers["Points"] + 1000) # Pega o vetor e soma com um escalar (+  -  *  /  ...)
+print(
+    df_customers["Points"] + 1000
+)  # Pega o vetor e soma com um escalar (+  -  *  /  ...)
 
-true_1000 = df_customers["Points"] > 1000 # Operação que retorna uma série do tipo boolean
+true_1000 = (
+    df_customers["Points"] > 1000
+)  # Operação que retorna uma série do tipo boolean
 
 # Forma de fazer filtro em pandas (True/False)
-df_customers[true_1000] # Retorna apenas as linhas True
+df_customers[true_1000]  # Retorna apenas as linhas True
 print(df_customers[true_1000])
 
 ###################################
 # Retornando à pergunta da linha 19:
-max_pts = df_customers["Points"].max() # Esse é só a quantidade max de pontos
+max_pts = df_customers["Points"].max()  # Esse é só a quantidade max de pontos
 print(max_pts)
 
-condicao_max = df_customers["Points"] == max_pts # Retorna uma serie boolean com tudo False exceto a linha com o valor máximo
+condicao_max = (
+    df_customers["Points"] == max_pts
+)  # Retorna uma serie boolean com tudo False exceto a linha com o valor máximo
 df_customers[condicao_max]
 
 ##################################
@@ -64,10 +71,14 @@ df_customers[df_customers["Points"] == df_customers["Points"].max()]
 #################################
 
 # Agora posso aplicar o filtro ["Names"] e saber só o nome direto:
-print(df_customers[df_customers["Points"] == df_customers["Points"].max()]["Name"]) # Série com uma posição apenas
+print(
+    df_customers[df_customers["Points"] == df_customers["Points"].max()]["Name"]
+)  # Série com uma posição apenas
 
 # Portanto: use .iloc na pos 0
-print(df_customers[df_customers["Points"] == df_customers["Points"].max()]["Name"].iloc[0])
+print(
+    df_customers[df_customers["Points"] == df_customers["Points"].max()]["Name"].iloc[0]
+)
 
 
 # Agora quero saber quem está entre 1000 e 2000
@@ -82,7 +93,7 @@ print(b)
 # No python tudo e referência, cada elemento da lista é apenas uma referência para um objeto
 b.append(5)
 print(a)
-print(b) # b é o mesmo objeto de a
+print(b)  # b é o mesmo objeto de a
 # a = b, portanto só existe uma lista e não duas
 # Só existe uma geladeira na sua casa, se altera a temperatura dela, todas as pessoas da casa (a, b, c, d) usam a mesma geladeira com a temperatura alterada!
 # Da mesma forma um dataframe não cria outro dataframe quando faz uma consulta/filtragem, ele apenas mostra a referência no próprio dataframe.
@@ -90,30 +101,31 @@ print(b) # b é o mesmo objeto de a
 # Se você aplica um filtro para depois manipular o dado, faça uma cópia antes de manipulá-lo!!!
 
 # Agora são duas geladeiras:
-b = a.copy() # cria um novo objeto
+b = a.copy()  # cria um novo objeto
 b.append(10)
 
 print(a)
-print(b) # b agora é uma cópia que pode ser modificada independente de a
+print(b)  # b agora é uma cópia que pode ser modificada independente de a
 
 ## Selecionar n colunas:
-print(df_customers["UUID"])             # Series
-print(df_customers[["UUID", "Name"]])   # DataFrame
+print(df_customers["UUID"])  # Series
+print(df_customers[["UUID", "Name"]])  # DataFrame
 
-colunas = df_customers.columns.tolist() # columns é um atributo do df e tolist() transforma o nome das colunas em lista
-colunas.sort() # ordena alfabeticamente os títulos da lista
+colunas = (
+    df_customers.columns.tolist()
+)  # columns é um atributo do df e tolist() transforma o nome das colunas em lista
+colunas.sort()  # ordena alfabeticamente os títulos da lista
 
-df_customers = df_customers[colunas] # Reatribui no próprio df o que se deseja
+df_customers = df_customers[colunas]  # Reatribui no próprio df o que se deseja
 print(df_customers)
 
 # Renomear colunas passando um dicionário
-# OBS.: .rename() gera um df novo! Portanto, reatribua a ele mesmo!!!
-df_customers = df_customers.rename(columns= {"Name": "Nome",
-                              "Points": "Pontos"})
+# OBS.: .rename() gera um df novo! Portanto, reatribua a ele mesmo para mudar o original!!!
+df_customers = df_customers.rename(columns={"Name": "Nome", "Points": "Pontos"})
 print(df_customers)
 
 # Pode ou reatribuir ou passar inplace=True
-df_customers.rename(columns={"UUID":"ID"}, inplace=True)
+df_customers.rename(columns={"UUID": "ID"}, inplace=True)
 print(df_customers)
 
-# 1:43:00
+# Continua em import_csv_02.py

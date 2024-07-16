@@ -20,7 +20,7 @@ df[["UUID", "Name"]].astype(int)
 
 # %%
 
-df["Lista"] = [[ 1,2 ] for i in df.index ]
+df["Lista"] = [[1, 2] for i in df.index]
 df
 
 # %%

@@ -4,13 +4,13 @@
 # Último nome da coluna nome
 import pandas as pd
 
-data = {"nome":["Téo", "Nah", "Napoleão"], "idade": [31, 32, 14]}
+data = {"nome": ["Téo", "Nah", "Napoleão"], "idade": [31, 32, 14]}
 
 df = pd.DataFrame(data)
 print(df)
 
-print("Sumério dos nomes:\n", df["nome"]) # Transforma o df em uma serie
-print("Sumário das idades:\n", df["idade"]) # Transforma o df em uma serie
+print("Sumério dos nomes:\n", df["nome"])  # Transforma o df em uma serie
+print("Sumário das idades:\n", df["idade"])  # Transforma o df em uma serie
 
 print("Média das idades:", df["idade"].mean())
 
