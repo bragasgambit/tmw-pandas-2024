@@ -184,7 +184,7 @@ df_crm
 # Portanto, o cliente mais valioso é a Nah, seguido da Lara, Teo e Maria
 
 # %%
-# O rfv é o que o iloc faz, percorrer a linha
+# O rfv é o que o iloc faz, percorre a linha
 df_crm.iloc[0]
 # Retorna uma série com todos os elementos da linha
 
